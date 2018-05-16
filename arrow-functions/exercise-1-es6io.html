@@ -43,8 +43,8 @@
 
         // map to an array of seconds
         const secondsArray = timeStrings.map(i => {
-            const [min, sec] = i.split(':');
-            return Number(min * 60) + Number(sec);
+            const [min, sec] = i.split(':').map(i => parseFloat(i));
+            return min * 60 + sec;
         });
 
         // reduce to get total
@@ -58,8 +58,8 @@
         // let's try :)
         const totalSeconds = items.reduce((total, i) => {
             if (i.textContent.includes('Flexbox')) {
-                const [min, sec] = i.dataset.time.split(':');
-                return total + Number(min * 60) + Number(sec);
+                const [min, sec] = i.dataset.time.split(':').map(i => parseFloat(i));
+                return total + min * 60 + sec;
             }
         }, 0);
 
